@@ -14,14 +14,14 @@ def is_happy_hour(user_date, user_time):
         return 17 <= user_time.hour < 19  # Happy hour between 5 PM and 7 PM
 
 def is_christmas(date):
-    #ENTER CODE HERE
+    return date.month == 12 and date.day == 25
 
 def is_easter(date):
     return date == calc_easter_sunday(date.year)
 
 def is_sunday(date):
-    #ENTER CODE HERE
-
+    return date.weekday() == 6
+# Meeus Julian algo starts here
 def calc_easter_sunday(year):
     a = year % 19
     b = year // 100
@@ -38,9 +38,24 @@ def calc_easter_sunday(year):
     month = (h + l - 7 * m + 114) // 31
     day = ((h + l - 7 * m + 114) % 31) + 1
     return datetime.date(year, month, day)
-if __name__ == "__main__":
+# if __name__ == "__main__":
+#     user_date = input("Enter date (YYYY-MM-DD): ")
+#     user_time = input("Enter time (HH:MM): ")
+
+#     result = is_happy_hour(user_date, user_time)
+#     print("Is it happy hour?", result)
+
+def main():
+    print("Welcome to the Happy Hour Checker!")
+    print("Please enter the date and time to check if it's happy hour.")
     user_date = input("Enter date (YYYY-MM-DD): ")
     user_time = input("Enter time (HH:MM): ")
 
     result = is_happy_hour(user_date, user_time)
-    print("Is it happy hour?", result)
+    if result:
+        print("Yes, it's happy hour!")
+    else:
+        print("No, it's not happy hour.")
+
+if __name__ == "__main__":
+    main()
